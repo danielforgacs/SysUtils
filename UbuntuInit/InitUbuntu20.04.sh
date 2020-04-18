@@ -72,12 +72,12 @@ sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
 	sudo cp /etc/fstab /etc/fstab.ORIGINAL
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'UNINSTALL' && \
-	echo '===================================='
-sudo apt purge -y --auto-remove ghostscript && \
-	sudo apt purge -y --auto-remove  gnome-online-accounts
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'UNINSTALL' && \
+# 	echo '===================================='
+# sudo apt purge -y --auto-remove ghostscript && \
+# 	sudo apt purge -y --auto-remove  gnome-online-accounts
 
 
 
