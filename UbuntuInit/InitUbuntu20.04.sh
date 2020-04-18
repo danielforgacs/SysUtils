@@ -86,9 +86,9 @@ echo '' && \
 	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
 	echo '===================================='
 sudo apt update && sudo apt full-upgrade -y && \
-	sudo apt-get autoclean && \
-	sudo apt-get clean && \
-	sudo apt-get autoremove
+	sudo apt-get -y autoclean && \
+	sudo apt-get -y clean && \
+	sudo apt-get -y autoremove
 
 
 echo '' && \
@@ -150,9 +150,9 @@ echo '' && \
 	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
 	echo '===================================='
 sudo apt update && sudo apt full-upgrade -y && \
-	sudo apt-get autoclean && \
-	sudo apt-get clean && \
-	sudo apt-get autoremove
+	sudo apt-get -y autoclean && \
+	sudo apt-get -y clean && \
+	sudo apt-get -y autoremove
 
 
 echo '' && \
