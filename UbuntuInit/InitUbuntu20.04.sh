@@ -162,18 +162,14 @@ sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFA
 	sudo update-grub
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'SET HOME DIR PERMISSIONS' && \
-	echo '===================================='
-sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
-	sudo chmod 700 /home/ford
-
 
 echo '' && \
 	echo '====================================' && \
 	echo 'CONFIGS' && \
 	echo '===================================='
+sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
+	sudo chmod 700 /home/ford
+
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
 
