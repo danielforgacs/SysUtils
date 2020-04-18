@@ -76,8 +76,9 @@ echo '' && \
 	echo '====================================' && \
 	echo 'UNINSTALL' && \
 	echo '===================================='
-sudo apt purge -y --auto-remove  ghostscript ghostscript:i386 gsfonts && \
+sudo apt purge -y --auto-remove ghostscript && \
 	sudo apt purge -y --auto-remove  gnome-online-accounts
+
 
 
 echo '' && \
