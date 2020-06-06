@@ -62,6 +62,15 @@
 # mixxx
 # sudo apt-get install -y virtualbox
 
+
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'UNINSTALL' && \
+# 	echo '===================================='
+# sudo apt purge -y --auto-remove ghostscript && \
+# 	sudo apt purge -y --auto-remove  gnome-online-accounts
+
+
 echo '' && \
 	echo '====================================' && \
 	echo 'BACKUP SYSTEM FILES' && \
@@ -70,14 +79,6 @@ sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
 	sudo cp /etc/default/grub /etc/default/grub.ORIGINAL && \
 	sudo cp /etc/adduser.conf /etc/adduser.conf.ORIGINAL && \
 	sudo cp /etc/fstab /etc/fstab.ORIGINAL
-
-
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'UNINSTALL' && \
-# 	echo '===================================='
-# sudo apt purge -y --auto-remove ghostscript && \
-# 	sudo apt purge -y --auto-remove  gnome-online-accounts
 
 
 sudo apt update
