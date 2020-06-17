@@ -20,6 +20,9 @@
 	#	$ xgamma -gamma 1.23
 	# - install dropbox & add manually to autostart 
 	# - debloat
+	# - install ToDo list:
+	#	 https://extensions.gnome.org/extension/162/todo-list/
+	#	 https://github.com/bsaleil/todolist-gnome-shell-extension
 
 	# ? set disk write caching disk
 	# ? set fix ip
@@ -62,6 +65,15 @@
 # mixxx
 # sudo apt-get install -y virtualbox
 
+
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'UNINSTALL' && \
+# 	echo '===================================='
+# sudo apt purge -y --auto-remove ghostscript && \
+# 	sudo apt purge -y --auto-remove  gnome-online-accounts
+
+
 echo '' && \
 	echo '====================================' && \
 	echo 'BACKUP SYSTEM FILES' && \
@@ -72,22 +84,7 @@ sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
 	sudo cp /etc/fstab /etc/fstab.ORIGINAL
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'UNINSTALL' && \
-	echo '===================================='
-sudo apt purge -y --auto-remove  ghostscript ghostscript:i386 gsfonts && \
-	sudo apt purge -y --auto-remove  gnome-online-accounts
-
-
-echo '' && \
-	echo '====================================' && \
-	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
-	echo '===================================='
-sudo apt update && sudo apt full-upgrade -y && \
-	sudo apt-get autoclean && \
-	sudo apt-get clean && \
-	sudo apt-get autoremove
+sudo apt update
 
 
 echo '' && \
@@ -146,34 +143,20 @@ sudo snap install vlc
 
 echo '' && \
 	echo '====================================' && \
-	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
-	echo '===================================='
-sudo apt update && sudo apt full-upgrade -y && \
-	sudo apt-get autoclean && \
-	sudo apt-get clean && \
-	sudo apt-get autoremove
-
-
-echo '' && \
-	echo '====================================' && \
 	echo 'TURN OFF STARTUP SPLASH SCREEN' && \
 	echo '===================================='
 sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
 	sudo update-grub
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'SET HOME DIR PERMISSIONS' && \
-	echo '===================================='
-sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
-	sudo chmod 700 /home/ford
-
 
 echo '' && \
 	echo '====================================' && \
 	echo 'CONFIGS' && \
 	echo '===================================='
+sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
+	sudo chmod 700 /home/ford
+
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
 
@@ -190,6 +173,16 @@ sudo swapoff /swapfile && \
 	sudo swapon /swapfile && \
 	sudo sed -i 's:/swapfile.*:/swapfile swap swap defaults 0 0:g' /etc/fstab
 
+
+echo '' && \
+	echo '====================================' && \
+	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
+	echo '===================================='
+sudo apt-get -y autoclean && \
+	sudo apt-get -y clean && \
+	sudo apt-get -y autoremove
+	sudo apt update && \
+	sudo apt full-upgrade -y && \
 
 
 echo '' && \
