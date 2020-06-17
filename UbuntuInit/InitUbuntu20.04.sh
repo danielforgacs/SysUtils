@@ -20,6 +20,9 @@
 	#	$ xgamma -gamma 1.23
 	# - install dropbox & add manually to autostart 
 	# - debloat
+	# - install ToDo list:
+	#	 https://extensions.gnome.org/extension/162/todo-list/
+	#	 https://github.com/bsaleil/todolist-gnome-shell-extension
 
 	# ? set disk write caching disk
 	# ? set fix ip
