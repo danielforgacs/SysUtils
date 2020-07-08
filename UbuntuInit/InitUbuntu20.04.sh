@@ -123,19 +123,19 @@ echo '' && \
 	echo 'APT-GET INSTALLS' && \
 	echo '===================================='
 sudo apt-get install -y gparted && \
-	sudo apt-get install -y htop && \
 	sudo apt-get install -y doublecmd-gtk && \
 	sudo apt-get install -y python3-venv && \
 	sudo apt-get install -y ranger && \
-	sudo apt-get install -y synaptic && \
 	sudo apt-get install -y vim && \
 	sudo apt-get install -y gnome-tweaks && \
-	sudo apt-get install -y baobab && \
 	sudo apt-get install -y curl && \
-	sudo apt-get install -y deja-dup && \
 	sudo apt-get install -y dconf-editor && \
 	sudo apt-get install -y usb-creator-gtk && \
 	sudo apt-get install -y tree
+	# sudo apt-get install -y htop && \
+	# sudo apt-get install -y synaptic && \
+	# sudo apt-get install -y baobab && \
+	# sudo apt-get install -y deja-dup && \
 
 
 echo '' && \
