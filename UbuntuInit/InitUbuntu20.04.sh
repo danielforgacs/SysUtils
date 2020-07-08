@@ -1,4 +1,5 @@
 # PRE INSTALL CHECKLIST
+	# - check firefox passwords
 	# - force sync Firefox
 	# - bookmark open tabs
 	# - save bookmarks
