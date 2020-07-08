@@ -15,6 +15,7 @@ mkdir -p $storagedest
 time sudo rsync \
 	-a \
 	-v \
+	--exclude VBoxMachines/
 	$storagesrc $storagedest
 
 echo "--> diff:"
