@@ -185,8 +185,8 @@ echo '' && \
 sudo apt-get -y autoclean && \
 	sudo apt-get -y clean && \
 	sudo apt-get -y autoremove
-	sudo apt update && \
-	sudo apt full-upgrade -y && \
+	# sudo apt update && \
+	# sudo apt full-upgrade -y && \
 
 
 echo '' && \
