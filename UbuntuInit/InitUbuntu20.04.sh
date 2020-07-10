@@ -129,14 +129,6 @@ sudo apt-get -y clean && \
 
 # echo '' && \
 # 	echo '====================================' && \
-# 	echo 'INSTALL DOCKER.IO' && \
-# 	echo '===================================='
-# sudo sudo apt-get install -y docker.io && \
-# 	sudo usermod -aG docker $USER
-
-
-# echo '' && \
-# 	echo '====================================' && \
 # 	echo 'APT-GET INSTALLS' && \
 # 	echo '===================================='
 # sudo apt-get install -y gparted && \
