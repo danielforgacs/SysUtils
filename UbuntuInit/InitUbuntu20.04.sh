@@ -153,18 +153,3 @@ sudo apt-get -y clean && \
 	# sudo apt-get install -y synaptic && \
 	# sudo apt-get install -y baobab && \
 	# sudo apt-get install -y deja-dup && \
-
-
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'SNAP INSTALLS' && \
-# 	echo '===================================='
-# sudo snap install vlc
-
-
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'TURN OFF STARTUP SPLASH SCREEN' && \
-# 	echo '===================================='
-# sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
-# 	sudo update-grub
