@@ -42,7 +42,13 @@ sudo apt-get -y clean && \
 	sudo apt-get -y autoclean && \
 	sudo apt-get -y autoremove
 
-=====================================================
+#=====================================================
+
+# OLD INSTALLS:
+# sudo apt install -y ffmpeg 
+# sudo apt install -y mixxx
+# sudo apt install -y virtualbox
+
 
 
 # PRE INSTALL CHECKLIST
@@ -76,22 +82,6 @@ sudo apt-get -y clean && \
 	# (1) about:config
 	# (2) filter "pix"
 	# (3) layout.css.devPixelsPerPx 1.1
-
-
-# OLD INSTALLS:
-	# && sudo apt-get install -y ffmpeg \
-# mixxx
-# sudo apt-get install -y virtualbox
-
-
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'UNINSTALL' && \
-# 	echo '===================================='
-# sudo apt purge -y --auto-remove ghostscript && \
-# 	sudo apt purge -y --auto-remove  gnome-online-accounts
-
-
 
 # echo '' && \
 # 	echo '====================================' && \
