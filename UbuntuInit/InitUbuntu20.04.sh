@@ -50,19 +50,12 @@ sudo apt-get -y clean && \
 # AFTER INSTALL CHECKLIST
 	# - turn off auto install
 	# - run this script...
-	# - set swappiness
 	#	to check: $ cat /proc/sys/vm/swappiness
 	#	update or add "vm.swappiness=20" to /etc/sysctl.conf
 	# - firefox settings
-	# - firefox extensions
-	# - setup & restore backup
-	# - setup gamma:
-	#	$ xgamma -gamma 1.23
+	# - setup gamma: $ xgamma -gamma 1.23
 	# - install dropbox & add manually to autostart 
 	# - debloat
-	# - install ToDo list:
-	#	 https://extensions.gnome.org/extension/162/todo-list/
-	#	 https://github.com/bsaleil/todolist-gnome-shell-extension
 
 	# ? set disk write caching disk
 	# ? set fix ip
@@ -77,30 +70,7 @@ sudo apt-get -y clean && \
 	# (3) layout.css.devPixelsPerPx 1.1
 
 
-# FIREFOX EXTENSIONS:
-	# https://addons.mozilla.org/en-US/firefox/addon/ublock-origin
-	# https://addons.mozilla.org/en-US/firefox/addon/noscript
-	# https://addons.mozilla.org/en-US/firefox/addon/ghostery
-	# https://addons.mozilla.org/en-US/firefox/addon/block-website
-	#
-	# https://addons.mozilla.org/en-US/firefox/addon/adblocker-ultimate
-	# https://addons.mozilla.org/en-US/firefox/addon/adblock-for-youtube
-	#
-	# https://addons.mozilla.org/en-GB/firefox/addon/smart-https-revived/
-	# ? https://addons.mozilla.org/en-GB/firefox/addon/https-everywhere/
-	# https://addons.mozilla.org/en-US/firefox/addon/privacy-possum
-	# https://addons.mozilla.org/en-US/firefox/addon/privacy-badger17
-	# https://duckduckgo.com/
-	# https://addons.mozilla.org/en-US/firefox/addon/disconnect
-	# https://addons.mozilla.org/en-US/firefox/addon/decentraleyes
-	# ? https://addons.mozilla.org/en-US/firefox/addon/cookie-autodelete
-	# ? https://addons.mozilla.org/en-US/firefox/addon/bloody-vikings
-	# https://addons.mozilla.org/en-US/firefox/addon/facebook-container
-	# https://addons.mozilla.org/en-US/firefox/addon/multi-account-containers
-
-
 # OLD INSTALLS:
-	# && sudo apt-get install -y duplicity \
 	# && sudo apt-get install -y ffmpeg \
 # mixxx
 # sudo apt-get install -y virtualbox
@@ -114,47 +84,47 @@ sudo apt-get -y clean && \
 # 	sudo apt purge -y --auto-remove  gnome-online-accounts
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'BACKUP SYSTEM FILES' && \
-	echo '===================================='
-sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
-	sudo cp /etc/default/grub /etc/default/grub.ORIGINAL && \
-	sudo cp /etc/adduser.conf /etc/adduser.conf.ORIGINAL && \
-	sudo cp /etc/fstab /etc/fstab.ORIGINAL
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'BACKUP SYSTEM FILES' && \
+# 	echo '===================================='
+# sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
+	# sudo cp /etc/default/grub /etc/default/grub.ORIGINAL && \
+	# sudo cp /etc/adduser.conf /etc/adduser.conf.ORIGINAL && \
+	# sudo cp /etc/fstab /etc/fstab.ORIGINAL
 
 	sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
 	sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 
 
-sudo apt update
+# sudo apt update
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'INSTALL GIT' && \
-	echo '===================================='
-sudo add-apt-repository -y -u ppa:git-core/ppa && \
-	sudo apt-get install -y git gitk git-gui
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'INSTALL GIT' && \
+# 	echo '===================================='
+# sudo add-apt-repository -y -u ppa:git-core/ppa && \
+# 	sudo apt-get install -y git gitk git-gui
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'INSTALL SUBLIME TEXT' && \
-	echo '===================================='
-wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && \
-	sudo apt-get install -y apt-transport-https && \
-	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && \
-	sudo apt-get update && \
-	sudo apt-get install -y sublime-text
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'INSTALL SUBLIME TEXT' && \
+# 	echo '===================================='
+# wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && \
+# 	sudo apt-get install -y apt-transport-https && \
+# 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && \
+# 	sudo apt-get update && \
+# 	sudo apt-get install -y sublime-text
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'INSTALL DOCKER.IO' && \
-	echo '===================================='
-sudo sudo apt-get install -y docker.io && \
-	sudo usermod -aG docker $USER
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'INSTALL DOCKER.IO' && \
+# 	echo '===================================='
+# sudo sudo apt-get install -y docker.io && \
+# 	sudo usermod -aG docker $USER
 
 
 echo '' && \
@@ -177,28 +147,28 @@ sudo apt-get install -y gparted && \
 	# sudo apt-get install -y deja-dup && \
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'SNAP INSTALLS' && \
-	echo '===================================='
-sudo snap install vlc
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'SNAP INSTALLS' && \
+# 	echo '===================================='
+# sudo snap install vlc
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'TURN OFF STARTUP SPLASH SCREEN' && \
-	echo '===================================='
-sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
-	sudo update-grub
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'TURN OFF STARTUP SPLASH SCREEN' && \
+# 	echo '===================================='
+# sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
+# 	sudo update-grub
 
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'CONFIGS' && \
-	echo '===================================='
-sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
-	sudo chmod 700 /home/ford
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'CONFIGS' && \
+# 	echo '===================================='
+# sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
+# 	sudo chmod 700 /home/ford
 
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
