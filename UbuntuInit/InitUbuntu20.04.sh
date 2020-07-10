@@ -31,6 +31,8 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 sudo sudo apt-get install -y docker.io && sudo usermod -aG docker $USER
 sudo snap install vlc
 
+sudo apt install -y doublecmd-gtk ranger python3-venv curl vim tree gnome-tweaks usb-creator-gtk
+
 sudo apt-get -y clean && \
 	sudo apt-get -y autoclean && \
 	sudo apt-get -y autoremove
@@ -128,20 +130,20 @@ sudo apt-get -y clean && \
 # 	sudo usermod -aG docker $USER
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'APT-GET INSTALLS' && \
-	echo '===================================='
-sudo apt-get install -y gparted && \
-	sudo apt-get install -y doublecmd-gtk && \
-	sudo apt-get install -y python3-venv && \
-	sudo apt-get install -y ranger && \
-	sudo apt-get install -y vim && \
-	sudo apt-get install -y gnome-tweaks && \
-	sudo apt-get install -y curl && \
-	sudo apt-get install -y dconf-editor && \
-	sudo apt-get install -y usb-creator-gtk && \
-	sudo apt-get install -y tree
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'APT-GET INSTALLS' && \
+# 	echo '===================================='
+# sudo apt-get install -y gparted && \
+# 	sudo apt-get install -y doublecmd-gtk && \
+# 	sudo apt-get install -y python3-venv && \
+# 	sudo apt-get install -y ranger && \
+# 	sudo apt-get install -y vim && \
+# 	sudo apt-get install -y gnome-tweaks && \
+# 	sudo apt-get install -y curl && \
+# 	sudo apt-get install -y dconf-editor && \
+# 	sudo apt-get install -y usb-creator-gtk && \
+# 	sudo apt-get install -y tree
 	# sudo apt-get install -y htop && \
 	# sudo apt-get install -y synaptic && \
 	# sudo apt-get install -y baobab && \
