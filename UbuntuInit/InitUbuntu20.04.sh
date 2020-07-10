@@ -175,31 +175,31 @@ sudo apt-get install -y gparted && \
 
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'SET SWAP' && \
-	echo '===================================='
-sudo swapoff /swapfile && \
-	sudo rm /swapfile && \
-	sudo fallocate -l 6g /swapfile && \
-	sudo chmod 600 /swapfile && \
-	sudo mkswap /swapfile && \
-	sudo swapon /swapfile && \
-	sudo sed -i 's:/swapfile.*:/swapfile swap swap defaults 0 0:g' /etc/fstab
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'SET SWAP' && \
+# 	echo '===================================='
+# sudo swapoff /swapfile && \
+# 	sudo rm /swapfile && \
+# 	sudo fallocate -l 6g /swapfile && \
+# 	sudo chmod 600 /swapfile && \
+# 	sudo mkswap /swapfile && \
+# 	sudo swapon /swapfile && \
+# 	sudo sed -i 's:/swapfile.*:/swapfile swap swap defaults 0 0:g' /etc/fstab
 
 
-echo '' && \
-	echo '====================================' && \
-	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
-	echo '===================================='
-sudo apt-get -y autoclean && \
-	sudo apt-get -y clean && \
-	sudo apt-get -y autoremove
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo 'CLEAN, AUTOREMOVE & FULL-UPGRADE' && \
+# 	echo '===================================='
+# sudo apt-get -y autoclean && \
+# 	sudo apt-get -y clean && \
+# 	sudo apt-get -y autoremove
 	# sudo apt update && \
 	# sudo apt full-upgrade -y && \
 
 
-echo '' && \
-	echo '====================================' && \
-	echo '>>> INIT FINISHED <<<' && \
-	echo '===================================='
+# echo '' && \
+# 	echo '====================================' && \
+# 	echo '>>> INIT FINISHED <<<' && \
+# 	echo '===================================='
