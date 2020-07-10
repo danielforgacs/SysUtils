@@ -105,17 +105,6 @@ sudo apt-get -y clean && \
 	# sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 
 
-# sudo apt update
-
-
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'INSTALL GIT' && \
-# 	echo '===================================='
-# sudo add-apt-repository -y -u ppa:git-core/ppa && \
-# 	sudo apt-get install -y git gitk git-gui
-
-
 # echo '' && \
 # 	echo '====================================' && \
 # 	echo 'INSTALL SUBLIME TEXT' && \
