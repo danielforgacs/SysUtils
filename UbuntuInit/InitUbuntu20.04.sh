@@ -1,3 +1,42 @@
+sudo apt purge ghostscript-x
+sudo apt purge ghostscript
+sudo apt update
+sudo apt full-upgrade -y
+mkdir ~/Original.Sys.Files
+cp /etc/fstab ~/Original.Sys.Files/
+cp /etc/default/grub ~/Original.Sys.Files/
+sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && sudo update-grub
+cp /etc/adduser.conf ~/Original.Sys.Files/
+sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
+sudo chmod 700 /home/ford
+cp /etc/sysctl.conf ~/Original.Sys.Files/
+sudo echo "
+
+vm.swappiness=20
+" >> /etc/sysctl.conf
+sudo swapoff /swapfile && \
+	sudo rm /swapfile && \
+	sudo fallocate -l 6g /swapfile && \
+	sudo chmod 600 /swapfile && \
+	sudo mkswap /swapfile && \
+	sudo swapon /swapfile
+
+sudo add-apt-repository -y -u ppa:git-core/ppa && sudo apt-get install -y git gitk git-gui
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && \
+	sudo apt-get install -y apt-transport-https && \
+	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && \
+	sudo apt-get update && \
+	sudo apt-get install -y sublime-text
+sudo sudo apt-get install -y docker.io && sudo usermod -aG docker $USER
+sudo snap install vlc
+
+sudo apt-get -y clean && \
+	sudo apt-get -y autoclean && \
+	sudo apt-get -y autoremove
+
+=====================================================
+
+
 # PRE INSTALL CHECKLIST
 	# - check firefox passwords
 	# - force sync Firefox
