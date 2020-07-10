@@ -4,6 +4,7 @@ cp /etc/fstab ~/Original.Sys.Files/
 cp /etc/default/grub ~/Original.Sys.Files/
 cp /etc/adduser.conf ~/Original.Sys.Files/
 cp /etc/sysctl.conf ~/Original.Sys.Files/
+cp /etc/default/motd-news ~/Original.Sys.Files/
 
 sudo apt purge ghostscript-x
 sudo apt purge ghostscript
@@ -40,7 +41,6 @@ wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add
 sudo snap install vlc
 
 
-cp /etc/default/motd-news ~/Original.Sys.Files/
 sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
 sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 
