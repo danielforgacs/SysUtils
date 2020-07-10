@@ -9,6 +9,7 @@ sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFA
 cp /etc/adduser.conf ~/Original.Sys.Files/
 sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
 sudo chmod 700 /home/ford
+gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 cp /etc/sysctl.conf ~/Original.Sys.Files/
 sudo echo "
 
@@ -170,7 +171,7 @@ sudo apt-get install -y gparted && \
 # sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf && \
 # 	sudo chmod 700 /home/ford
 
-gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
+# gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
 
 
