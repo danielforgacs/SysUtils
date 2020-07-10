@@ -92,18 +92,6 @@ sudo apt-get -y clean && \
 # 	sudo apt purge -y --auto-remove  gnome-online-accounts
 
 
-# echo '' && \
-# 	echo '====================================' && \
-# 	echo 'BACKUP SYSTEM FILES' && \
-# 	echo '===================================='
-# sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL && \
-	# sudo cp /etc/default/grub /etc/default/grub.ORIGINAL && \
-	# sudo cp /etc/adduser.conf /etc/adduser.conf.ORIGINAL && \
-	# sudo cp /etc/fstab /etc/fstab.ORIGINAL
-
-	# sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
-	# sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
-
 
 # echo '' && \
 # 	echo '====================================' && \
