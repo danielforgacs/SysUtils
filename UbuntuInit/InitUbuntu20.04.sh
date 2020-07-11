@@ -6,10 +6,9 @@ cp /etc/adduser.conf ~/Original.Sys.Files/
 cp /etc/sysctl.conf ~/Original.Sys.Files/
 cp /etc/default/motd-news ~/Original.Sys.Files/
 
-sudo apt purge ghostscript-x
-sudo apt purge ghostscript
+sudo apt purge -y ghostscript-x
+sudo apt purge -y ghostscript
 sudo apt update
-sudo apt full-upgrade -y
 
 sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && sudo update-grub
 sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
