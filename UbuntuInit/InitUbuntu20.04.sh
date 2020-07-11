@@ -1,10 +1,11 @@
-mkdir ~/Original.Sys.Files
+bkpdir=~/Original.Sys.Files/
+mkdir $bkpdir
 
-cp /etc/fstab ~/Original.Sys.Files/
-cp /etc/default/grub ~/Original.Sys.Files/
-cp /etc/adduser.conf ~/Original.Sys.Files/
-cp /etc/sysctl.conf ~/Original.Sys.Files/
-cp /etc/default/motd-news ~/Original.Sys.Files/
+cp /etc/fstab $bkpdir
+cp /etc/default/grub $bkpdir
+cp /etc/adduser.conf $bkpdir
+cp /etc/sysctl.conf $bkpdir
+cp /etc/default/motd-news $bkpdir
 
 sudo apt purge -y ghostscript-x
 sudo apt purge -y ghostscript
