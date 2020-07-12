@@ -52,6 +52,9 @@ sudo apt-get -y clean && sudo apt-get -y autoclean && sudo apt-get -y autoremove
 # video not playing in firefox:
 	# (?) libxvidcore4 - found in xubuntu
 
+# aut updates info: https://www.ostechnix.com/how-to-disable-unattended-upgrades-on-ubuntu/
+# aut updates info: https://wiki.debian.org/UnattendedUpgrades
+
 
 #=====================================================
 
