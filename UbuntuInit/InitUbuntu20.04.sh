@@ -9,6 +9,7 @@ cp /etc/default/motd-news $bkpdir
 
 sudo apt purge -y ghostscript-x
 sudo apt purge -y ghostscript
+
 sudo apt update
 
 sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && sudo update-grub
@@ -51,7 +52,7 @@ sudo apt-get -y clean && sudo apt-get -y autoclean && sudo apt-get -y autoremove
 
 # video not playing in firefox:
 	# (?) libxvidcore4 - found in xubuntu
-
+# https://askubuntu.com/questions/248769/what-is-the-difference-between-ubuntu-kubuntu-xubuntu-and-lubuntu-restricted-e
 # aut updates info: https://www.ostechnix.com/how-to-disable-unattended-upgrades-on-ubuntu/
 # aut updates info: https://wiki.debian.org/UnattendedUpgrades
 
