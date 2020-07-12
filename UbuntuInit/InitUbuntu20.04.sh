@@ -47,6 +47,12 @@ sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 
 sudo apt-get -y clean && sudo apt-get -y autoclean && sudo apt-get -y autoremove
 
+
+
+# video not playing in firefox:
+	# (?) libxvidcore4 - found in xubuntu
+
+
 #=====================================================
 
 # OLD INSTALLS:
