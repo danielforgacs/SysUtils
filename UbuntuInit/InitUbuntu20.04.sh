@@ -18,43 +18,35 @@ vm.swappiness=20
 # Uninstall unused stuff
 sudo apt purge -y ghostscript-x ghostscript
 
-
-
-
-
-sudo apt update
-
-sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && sudo update-grub
+# Sys settings:
+sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
+	sudo update-grub
 sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
-
+sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
+sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 sudo chmod 700 /home/ford
-gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
-
 sudo swapoff /swapfile && \
 	sudo rm /swapfile && \
 	sudo fallocate -l 6g /swapfile && \
 	sudo chmod 600 /swapfile && \
 	sudo mkswap /swapfile && \
 	sudo swapon /swapfile
+gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
-sudo add-apt-repository -y -u ppa:git-core/ppa && sudo apt-get install -y git gitk git-gui
-sudo sudo apt-get install -y docker.io && sudo usermod -aG docker $USER
+sudo apt update
+sudo add-apt-repository -y -u ppa:git-core/ppa && \
+	sudo apt-get install -y git gitk git-gui
+sudo sudo apt-get install -y docker.io && \
+	sudo usermod -aG docker $USER
 sudo apt install -y doublecmd-gtk ranger python3-venv curl vim tree gnome-tweaks usb-creator-gtk
-
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && \
 	sudo apt-get install -y apt-transport-https && \
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && \
 	sudo apt-get update && \
 	sudo apt-get install -y sublime-text
+sudo apt-get -y clean && sudo apt-get -y autoremove && sudo apt-get -y autoclean
 
 sudo snap install vlc
-
-
-sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
-sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
-
-
-sudo apt-get -y clean && sudo apt-get -y autoremove && sudo apt-get -y autoclean
 
 
 
