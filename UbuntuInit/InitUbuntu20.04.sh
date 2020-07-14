@@ -51,7 +51,7 @@ sudo swapoff /swapfile && \
 	sudo swapon /swapfile
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
-# Uninstall unused stuff
+# installs / uninstalls
 sudo apt purge -y ghostscript-x ghostscript
 sudo apt update
 sudo add-apt-repository -y -u ppa:git-core/ppa && \
