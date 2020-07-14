@@ -1,3 +1,4 @@
+# Backup sys files
 bkpdir=~/Original.Sys.Files/
 mkdir $bkpdir
 cp /etc/fstab \
@@ -8,7 +9,18 @@ cp /etc/fstab \
 	/etc/apt/apt.conf.d/20auto-upgrades \
 	$bkpdir
 
+# Set swappiness
+sudo echo "
+
+vm.swappiness=20
+" >> /etc/sysctl.conf
+
+# Uninstall unused stuff
 sudo apt purge -y ghostscript-x ghostscript
+
+
+
+
 
 sudo apt update
 
@@ -17,10 +29,6 @@ sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
 
 sudo chmod 700 /home/ford
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
-sudo echo "
-
-vm.swappiness=20
-" >> /etc/sysctl.conf
 
 sudo swapoff /swapfile && \
 	sudo rm /swapfile && \
