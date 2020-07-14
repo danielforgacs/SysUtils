@@ -58,7 +58,7 @@ sudo add-apt-repository -y -u ppa:git-core/ppa && \
 	sudo apt-get install -y git gitk git-gui
 sudo sudo apt-get install -y docker.io && \
 	sudo usermod -aG docker $USER
-sudo apt install -y doublecmd-gtk ranger python3-venv curl vim tree gnome-tweaks usb-creator-gtk
+sudo apt install -y doublecmd-gtk ranger curl vim tree gnome-tweaks usb-creator-gtk
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add - && \
 	sudo apt-get install -y apt-transport-https && \
 	echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list && \
