@@ -8,8 +8,7 @@ cp /etc/sysctl.conf $bkpdir
 cp /etc/default/motd-news $bkpdir
 cp /etc/apt/apt.conf.d/20auto-upgrades $bkpdir
 
-sudo apt purge -y ghostscript-x
-sudo apt purge -y ghostscript
+sudo apt purge -y ghostscript-x ghostscript
 
 sudo apt update
 
