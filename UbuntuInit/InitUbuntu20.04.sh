@@ -1,3 +1,22 @@
+# PRE INSTALL CHECKLIST
+	# - check firefox passwords
+	# - force sync Firefox
+	# - bookmark open tabs
+	# - save bookmarks
+	# - backup
+	# - full storage backup
+	# - check STORAGE mount options
+
+# AFTER INSTALL CHECKLIST
+	# - turn off auto install
+	# - run this script...
+	#	to check: $ cat /proc/sys/vm/swappiness
+	#	update or add "vm.swappiness=20" to /etc/sysctl.conf
+	# - firefox settings
+	# - setup gamma: $ xgamma -gamma 1.23
+	# - install dropbox & add manually to autostart 
+	# - debloat
+
 # Backup sys files
 bkpdir=~/Original.Sys.Files/
 mkdir $bkpdir
@@ -15,10 +34,9 @@ sudo echo "
 vm.swappiness=20
 " >> /etc/sysctl.conf
 
-# Uninstall unused stuff
-sudo apt purge -y ghostscript-x ghostscript
-
 # Sys settings:
+sudo sed -i 's:Update-Package-Lists "1":Update-Package-Lists "0":g' /etc/apt/apt.conf.d/20auto-upgrades
+sudo sed -i 's:Unattended-Upgrade "1":Unattended-Upgrade "0":g' /etc/apt/apt.conf.d/20auto-upgrades
 sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
 	sudo update-grub
 sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
@@ -33,6 +51,8 @@ sudo swapoff /swapfile && \
 	sudo swapon /swapfile
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
+# Uninstall unused stuff
+sudo apt purge -y ghostscript-x ghostscript
 sudo apt update
 sudo add-apt-repository -y -u ppa:git-core/ppa && \
 	sudo apt-get install -y git gitk git-gui
@@ -69,25 +89,6 @@ sudo snap install vlc
 
 
 
-# PRE INSTALL CHECKLIST
-	# - check firefox passwords
-	# - force sync Firefox
-	# - bookmark open tabs
-	# - save bookmarks
-	# - backup
-	# - full storage backup
-	# - check STORAGE mount options
-
-
-# AFTER INSTALL CHECKLIST
-	# - turn off auto install
-	# - run this script...
-	#	to check: $ cat /proc/sys/vm/swappiness
-	#	update or add "vm.swappiness=20" to /etc/sysctl.conf
-	# - firefox settings
-	# - setup gamma: $ xgamma -gamma 1.23
-	# - install dropbox & add manually to autostart 
-	# - debloat
 
 	# ? set disk write caching disk
 	# ? set fix ip
