@@ -6,6 +6,7 @@ cp /etc/default/grub $bkpdir
 cp /etc/adduser.conf $bkpdir
 cp /etc/sysctl.conf $bkpdir
 cp /etc/default/motd-news $bkpdir
+cp /etc/apt/apt.conf.d/20auto-upgrades $bkpdir
 
 sudo apt purge -y ghostscript-x
 sudo apt purge -y ghostscript
