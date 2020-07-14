@@ -46,7 +46,7 @@ sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
 sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
 
 
-sudo apt-get -y clean && sudo apt-get -y autoclean && sudo apt-get -y autoremove
+sudo apt-get -y clean && sudo apt-get -y autoremove && sudo apt-get -y autoclean
 
 
 
