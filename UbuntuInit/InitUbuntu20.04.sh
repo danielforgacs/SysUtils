@@ -1,12 +1,12 @@
 bkpdir=~/Original.Sys.Files/
 mkdir $bkpdir
-
-cp /etc/fstab $bkpdir
-cp /etc/default/grub $bkpdir
-cp /etc/adduser.conf $bkpdir
-cp /etc/sysctl.conf $bkpdir
-cp /etc/default/motd-news $bkpdir
-cp /etc/apt/apt.conf.d/20auto-upgrades $bkpdir
+cp /etc/fstab \
+	/etc/default/grub \
+	/etc/adduser.conf \
+	/etc/sysctl.conf \
+	/etc/default/motd-news \
+	/etc/apt/apt.conf.d/20auto-upgrades \
+	$bkpdir
 
 sudo apt purge -y ghostscript-x ghostscript
 
