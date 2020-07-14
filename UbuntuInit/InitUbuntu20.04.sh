@@ -79,23 +79,11 @@ sudo snap install vlc
 # aut updates info: https://www.ostechnix.com/how-to-disable-unattended-upgrades-on-ubuntu/
 # aut updates info: https://wiki.debian.org/UnattendedUpgrades
 
-
-#=====================================================
-
-# OLD INSTALLS:
-# sudo apt install -y ffmpeg 
-# sudo apt install -y mixxx
-# sudo apt install -y virtualbox
-
-
-
-
 	# ? set disk write caching disk
 	# ? set fix ip
 	# ? Improve Ubuntu Battery by installing TLP for Linux
 	# ? uncomplicated firewall
 	#	$ sudo apt-get install gufw
-
 
 # FIREFOX DEFAULT ZOOM:
 	# (1) about:config
@@ -106,16 +94,12 @@ sudo snap install vlc
 # 	echo '====================================' && \
 # 	echo 'APT-GET INSTALLS' && \
 # 	echo '===================================='
+# sudo apt install -y ffmpeg 
+# sudo apt install -y mixxx
+# sudo apt install -y virtualbox
 # sudo apt-get install -y gparted && \
-# 	sudo apt-get install -y doublecmd-gtk && \
 # 	sudo apt-get install -y python3-venv && \
-# 	sudo apt-get install -y ranger && \
-# 	sudo apt-get install -y vim && \
-# 	sudo apt-get install -y gnome-tweaks && \
-# 	sudo apt-get install -y curl && \
 # 	sudo apt-get install -y dconf-editor && \
-# 	sudo apt-get install -y usb-creator-gtk && \
-# 	sudo apt-get install -y tree
 	# sudo apt-get install -y htop && \
 	# sudo apt-get install -y synaptic && \
 	# sudo apt-get install -y baobab && \
