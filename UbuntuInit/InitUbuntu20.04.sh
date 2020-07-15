@@ -28,11 +28,8 @@ cp /etc/fstab \
 	/etc/apt/apt.conf.d/20auto-upgrades \
 	$bkpdir
 
-# Set swappiness
-sudo echo "
-
-vm.swappiness=20
-" >> /etc/sysctl.conf
+# Set swappiness / "sudo echo" doesn't work...
+# vm.swappiness=20 >> /etc/sysctl.conf
 
 # Sys settings:
 sudo sed -i 's:Update-Package-Lists "1":Update-Package-Lists "0":g' /etc/apt/apt.conf.d/20auto-upgrades
