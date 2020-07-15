@@ -69,8 +69,8 @@ sudo snap install vlc
 sudo apt install -y ffmpeg
 
 # install dropbox:
-cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 # to autostart add to startup: /home/ford/.dropbox-dist/dropboxd
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 
 # video not playing in firefox:
 	# (?) libxvidcore4 - found in xubuntu
