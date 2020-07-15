@@ -68,6 +68,10 @@ sudo snap install vlc
 # needed for streaming videos
 sudo apt install -y ffmpeg
 
+# install dropbox:
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+# to autostart add to startup: /home/ford/.dropbox-dist/dropboxd
+
 # video not playing in firefox:
 	# (?) libxvidcore4 - found in xubuntu
 	# restricted stuff installs fonts like microsoft fonts.
