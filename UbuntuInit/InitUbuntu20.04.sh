@@ -49,7 +49,7 @@ sudo swapoff /swapfile && \
 gsettings set org.gnome.shell.extensions.dash-to-dock show-mounts false
 
 # installs / uninstalls
-sudo apt purge -y ghostscript-x ghostscript
+sudo apt purge -y ghostscript-x ghostscript:i386
 sudo apt update
 sudo add-apt-repository -y -u ppa:git-core/ppa && \
 	sudo apt-get install -y git gitk git-gui
