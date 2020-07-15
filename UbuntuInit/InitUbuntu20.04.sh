@@ -65,7 +65,8 @@ sudo apt-get -y clean && sudo apt-get -y autoremove && sudo apt-get -y autoclean
 
 sudo snap install vlc
 
-
+# needed for streaming videos
+sudo apt install -y ffmpeg
 
 # video not playing in firefox:
 	# (?) libxvidcore4 - found in xubuntu
