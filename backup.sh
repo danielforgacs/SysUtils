@@ -17,6 +17,8 @@ time sudo rsync \
 	-v \
 	--exclude VBoxMachines/ \
 	--exclude .Trash-1000/ \
+	--exclude **/.venv*/ \
+	--exclude **/.postgres_local*/ \
 	$storagesrc $storagedest
 
 echo "--> diff:"
