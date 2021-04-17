@@ -19,7 +19,7 @@ time sudo rsync \
 	--exclude **/.postgres_local*/ \
 	--exclude .Trash-1000/ \
 	--exclude "cv - examles"/ \
-	--exclude "dev/.deletables"/ \
+	--exclude "dev"/ \
 	--exclude "Dropbox/.dropbox.cache"/ \
 	--exclude "Dropbox/.dropbox" \
 	--exclude "foundation-trilogy_bbc-radio_1973_complete"/ \
@@ -41,7 +41,6 @@ diff -r -q \
 	-x .venv \
 	-x .Trash-1000 \
 	-x .postgres_local \
-	-x node_modules \
 	$storagesrc $storagedest \
 	| tee $bkproot/DIFF.log
 
