@@ -2,6 +2,7 @@ dirdate=$(date +%Y-%m-%d_%H-%M-%S)
 bkproot=/media/ford/SMALL_BKP/__BACKUP__/backup_$dirdate
 storagesrc=$HOME/storage/
 storagedest=$bkproot/storage/
+logf=$bkproot/BACKUP.log
 
 echo "====================================================="
 date
@@ -28,12 +29,13 @@ time sudo rsync \
 	--exclude Router/ \
 	--exclude "sleep videos"/ \
 	--exclude "tutorial - youtube"/ \
+	--exclude "dev/.deletables"/ \
 	--exclude Youtube-DL/ \
-	$storagesrc $storagedest
+	$storagesrc $storagedest | tee $logf
 
 echo "--> diff:"
 
-diff -r -q $storagesrc $storagedest
+diff -r -q $storagesrc $storagedest | tee -a $logf
 
 echo "--> storage size:"
 du -c -h -s $storagedest
