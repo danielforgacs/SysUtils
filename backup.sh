@@ -19,6 +19,7 @@ time sudo rsync \
 	--exclude .Trash-1000/ \
 	--exclude **/.venv*/ \
 	--exclude **/.postgres_local*/ \
+	--exclude Dropbox/.dropbox.cache/ \
 	$storagesrc $storagedest
 
 echo "--> diff:"
