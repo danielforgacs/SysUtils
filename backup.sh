@@ -15,21 +15,24 @@ mkdir -p $storagedest
 time sudo rsync \
 	-a \
 	-v \
-	--exclude VBoxMachines/ \
-	--exclude .Trash-1000/ \
 	--exclude **/.venv*/ \
 	--exclude **/.postgres_local*/ \
-	--exclude Dropbox/.dropbox.cache/ \
-	--exclude Dropbox/.dropbox \
-	--exclude foundation-trilogy_bbc-radio_1973_complete/ \
+	--exclude .Trash-1000/ \
+	--exclude "cv"/ \
+	--exclude "dev/.deletables"/ \
+	--exclude "Dropbox/.dropbox.cache"/ \
+	--exclude "Dropbox/.dropbox" \
+	--exclude "foundation-trilogy_bbc-radio_1973_complete"/ \
 	--exclude "Job Hunt - 2020"/ \
 	--exclude "Job Hunt - 2021"/ \
-	--exclude Lenovo/ \
-	--exclude Router/ \
+	--exclude "Lenovo"/ \
+	--exclude "Music/______mp3_copies"/ \
+	--exclude "Records for Youtube"/ \
+	--exclude "Router"/ \
 	--exclude "sleep videos"/ \
 	--exclude "tutorial - youtube"/ \
-	--exclude "dev/.deletables"/ \
-	--exclude Youtube-DL/ \
+	--exclude "VBoxMachines"/ \
+	--exclude "Youtube-DL"/ \
 	$storagesrc $storagedest | tee $bkproot/RSYNC.log
 
 echo "--> diff:"
