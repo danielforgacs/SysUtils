@@ -37,7 +37,12 @@ time sudo rsync \
 
 echo "--> diff:"
 
-diff -r -q $storagesrc $storagedest | tee $bkproot/DIFF.log
+diff -r -q \
+	-x .venv \
+	-x .Trash-1000 \
+	-x .postgres_local* \
+	$storagesrc $storagedest \
+	| tee $bkproot/DIFF.log
 
 echo "--> storage size:"
 du -c -h -s $storagedest
