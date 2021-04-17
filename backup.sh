@@ -21,18 +21,17 @@ time sudo rsync \
 	--exclude **/.postgres_local*/ \
 	--exclude Dropbox/.dropbox.cache/ \
 	--exclude Dropbox/.dropbox \
+	--exclude foundation-trilogy_bbc-radio_1973_complete/ \
+	--exclude "Job Hunt - 2020"/ \
+	--exclude "Job Hunt - 2021"/ \
+	--exclude Lenovo/ \
+	--exclude Router/ \
+	--exclude "sleep videos"/ \
+	--exclude "tutorial - youtube"/ \
+	--exclude Youtube-DL/ \
 	$storagesrc $storagedest
 
 echo "--> diff:"
-
-diff -r -q $storagesrc $storagedest
-
-echo "--> clean up:"
-
-find $storagedest -name '.Trash-1000' -type d -print0 | xargs -0 rm -rf
-find $storagedest -name '.venv*' -type d -print0 | xargs -0 rm -rf
-
-echo "--> diff after clen up:"
 
 diff -r -q $storagesrc $storagedest
 
