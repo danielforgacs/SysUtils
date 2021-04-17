@@ -18,7 +18,7 @@ time sudo rsync \
 	--exclude **/.venv*/ \
 	--exclude **/.postgres_local*/ \
 	--exclude .Trash-1000/ \
-	--exclude "cv"/ \
+	--exclude "cv - examles"/ \
 	--exclude "dev/.deletables"/ \
 	--exclude "Dropbox/.dropbox.cache"/ \
 	--exclude "Dropbox/.dropbox" \
