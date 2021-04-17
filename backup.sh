@@ -40,7 +40,8 @@ echo "--> diff:"
 diff -r -q \
 	-x .venv \
 	-x .Trash-1000 \
-	-x .postgres_local* \
+	-x .postgres_local \
+	-x node_modules \
 	$storagesrc $storagedest \
 	| tee $bkproot/DIFF.log
 
