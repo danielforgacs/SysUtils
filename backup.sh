@@ -15,24 +15,34 @@ mkdir -p $storagedest
 time sudo rsync \
 	-a \
 	-v \
-	--exclude VBoxMachines/ \
-	--exclude .Trash-1000/ \
 	--exclude **/.venv*/ \
 	--exclude **/.postgres_local*/ \
-	$storagesrc $storagedest
+	--exclude .Trash-1000/ \
+	--exclude "cv - examles"/ \
+	--exclude "dev"/ \
+	--exclude "Dropbox/.dropbox.cache"/ \
+	--exclude "Dropbox/.dropbox" \
+	--exclude "foundation-trilogy_bbc-radio_1973_complete"/ \
+	--exclude "Job Hunt - 2020"/ \
+	--exclude "Job Hunt - 2021"/ \
+	--exclude "Lenovo"/ \
+	--exclude "Music/______mp3_copies"/ \
+	--exclude "Records for Youtube"/ \
+	--exclude "Router"/ \
+	--exclude "sleep videos"/ \
+	--exclude "tutorial - youtube"/ \
+	--exclude "VBoxMachines"/ \
+	--exclude "Youtube-DL"/ \
+	$storagesrc $storagedest | tee $bkproot/RSYNC.log
 
 echo "--> diff:"
 
-diff -r -q $storagesrc $storagedest
-
-echo "--> clean up:"
-
-find $storagedest -name '.Trash-1000' -type d -print0 | xargs -0 rm -rf
-find $storagedest -name '.venv*' -type d -print0 | xargs -0 rm -rf
-
-echo "--> diff after clen up:"
-
-diff -r -q $storagesrc $storagedest
+diff -r -q \
+	-x .venv \
+	-x .Trash-1000 \
+	-x .postgres_local \
+	$storagesrc $storagedest \
+	| tee $bkproot/DIFF.log
 
 echo "--> storage size:"
 du -c -h -s $storagedest
