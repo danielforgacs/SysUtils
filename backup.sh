@@ -46,7 +46,7 @@ time diff -r -q \
 
 echo "--> checksums:"
 
-time find $storagedest -type f -exec sha512sum {} \; | tee $storagedest/CHECKSUMS.txt
+time find $storagedest -type f -exec sha512sum {} \; | tee $bkproot/CHECKSUMS.txt
 
 echo "--> storage size:"
 du -c -h -s $storagedest
