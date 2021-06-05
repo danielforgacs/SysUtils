@@ -1,4 +1,6 @@
+# ##########
 # Backup original sys files
+# ##########
 sudo cp /etc/fstab /etc/fstab.ORIGINAL
 sudo cp /etc/default/grub /etc/default/grub.ORIGINAL
 sudo cp /etc/adduser.conf /etc/adduser.conf.ORIGINAL
