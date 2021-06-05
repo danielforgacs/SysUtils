@@ -1,3 +1,22 @@
+# ToDo: r'n'd unused services:
+# 	https://linuxhint.com/disable_unnecessary_services_debian_linux/
+#	https://sourcedigit.com/23624-how-to-disable-or-enable-automatic-error-reporting-in-ubuntu/
+#
+# 	systemctl --user stop  gsd-wacom.target
+# 	systemctl --user mask  gsd-wacom.target
+#
+# 	systemctl --user stop gsd-print-notifications.target
+# 	systemctl --user mask gsd-print-notifications.target
+#
+# 	systemctl stop snapd.service
+# 	systemctl disable snapd.service
+#
+# 	systemctl stop snapd.socket
+# 	systemctl disable snapd.socket
+#
+# 	service --status-all
+
+
 # PRE INSTALL CHECKLIST
 	# - check firefox passwords
 	# - force sync Firefox
@@ -14,7 +33,7 @@
 	#	update or add "vm.swappiness=20" to /etc/sysctl.conf
 	# - firefox settings
 	# - setup gamma: $ xgamma -gamma 1.23
-	# - install dropbox & add manually to autostart 
+	# - install dropbox & add manually to autostart
 	# - debloat
 
 # Backup sys files
@@ -96,7 +115,7 @@ cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
 # 	echo '====================================' && \
 # 	echo 'APT-GET INSTALLS' && \
 # 	echo '===================================='
-# sudo apt install -y ffmpeg 
+# sudo apt install -y ffmpeg
 # sudo apt install -y mixxx
 # sudo apt install -y virtualbox
 # sudo apt-get install -y gparted && \

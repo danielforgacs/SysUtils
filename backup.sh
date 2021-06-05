@@ -37,12 +37,16 @@ time sudo rsync \
 
 echo "--> diff:"
 
-diff -r -q \
+time diff -r -q \
 	-x .venv \
 	-x .Trash-1000 \
 	-x .postgres_local \
 	$storagesrc $storagedest \
 	| tee $bkproot/DIFF.log
+
+echo "--> checksums:"
+
+time find $storagedest -type f -exec sha512sum {} \; | tee $bkproot/CHECKSUMS.txt
 
 echo "--> storage size:"
 du -c -h -s $storagedest
