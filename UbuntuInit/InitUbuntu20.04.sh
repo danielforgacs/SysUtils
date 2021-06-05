@@ -1,5 +1,6 @@
 # ToDo: r'n'd unused services:
 # 	https://linuxhint.com/disable_unnecessary_services_debian_linux/
+#	https://sourcedigit.com/23624-how-to-disable-or-enable-automatic-error-reporting-in-ubuntu/
 #
 # 	systemctl --user stop  gsd-wacom.target
 # 	systemctl --user mask  gsd-wacom.target
