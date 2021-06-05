@@ -9,6 +9,7 @@ sudo cp /etc/sysctl.conf /etc/sysctl.conf.ORIGINAL
 sudo cp /etc/apt/apt.conf.d/20auto-upgrades /etc/apt/apt.conf.d/20auto-upgrades.ORIGINAL
 
 # check these, these are used to fetch some news on updates...
+# ubuntu "Message of the Day" files & swrvice...
 
 # doesn't exist:
 # /etc/default/motd-news
@@ -45,3 +46,20 @@ sudo update-grub
 # sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
 # sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
 # sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
+
+
+# ######################################################################
+# ######################################################################
+# Services
+
+sudo systemctl stop avahi-daemon.service
+sudo systemctl disable avahi-daemon.service
+
+sudo systemctl stop avahi-daemon.socket
+sudo systemctl disable avahi-daemon.socket
+
+sudo systemctl stop motd-news.service
+sudo systemctl disable motd-news.service
+
+sudo systemctl stop motd-news.timer
+sudo systemctl disable motd-news.timer
