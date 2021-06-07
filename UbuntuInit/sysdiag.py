@@ -2,13 +2,16 @@ import subprocess
 import wsgiref.simple_server as simpserv
 
 
+
 DO_PRINT = True
 EXPECTEDSWAPPINESS = 30
+GRUBFILE = '/etc/default/grub'
+SPLASHSCREENMARKER = 'quiet splash'
 
 
 
 
-def print_result(func):
+def print_func_result(func):
     def wrapper():
         result = func()
         if DO_PRINT:
@@ -19,15 +22,29 @@ def print_result(func):
 
 
 
-@print_result
+@print_func_result
 def check_swappiness():
     cmd = ['cat', '/proc/sys/vm/swappiness']
     swappinesscheck = subprocess.run(cmd, capture_output=True)
     swappinessnum = int(swappinesscheck.stdout.decode().strip())
-    msg = '[ERROR] swappiness OK.'
+    msg = '[INFO] swappiness OK.'
 
     if swappinessnum != EXPECTEDSWAPPINESS:
         msg = '[ERROR] swappiness is: '+str(swappinessnum)+'; expected: '+str(EXPECTEDSWAPPINESS)
+
+    return msg
+
+
+
+@print_func_result
+def check_boot_splash_screen():
+    with open(GRUBFILE, 'r') as filestream:
+        grubconfig = filestream.read()
+
+    msg = '[INFO] boot splash screen is OFF.'
+
+    if SPLASHSCREENMARKER in grubconfig:
+        msg = '[ERROR] boot splash screen is turned ON in grub config'
 
     return msg
 
@@ -56,10 +73,10 @@ def serve_diag():
 
 def main():
     check_swappiness()
-
+    check_boot_splash_screen()
 
 
 
 if __name__ == '__main__':
     main()
-    serve_diag()
+    # serve_diag()
