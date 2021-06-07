@@ -46,6 +46,9 @@ SERVICES = [
     ['--user', 'org.gnome.SettingsDaemon.Wacom.target'],
     ['--user', 'org.gnome.SettingsDaemon.Wacom.service'],
 ]
+INSTALLED_PACKAGES = [
+    'ghostscript*',
+]
 
 
 
@@ -209,6 +212,27 @@ def check_apt_repositories():
     msg = msg.strip()
 
     return msg
+
+
+
+
+@capture_stdout
+@print_func_result
+def check_unnecessary_packages():
+    msg = ''
+
+    for package in INSTALLED_PACKAGES:
+        cmd = ['apt', 'list', '--installed', package]
+        response = subprocess.run(cmd, capture_output=True)
+        output = response.stdout.decode().strip()
+
+        if output != 'Listing...':
+            msg += '[ERROR] package is installed: '+package+'\n'
+
+    msg = msg.strip()
+
+    return msg
+
 
 
 
