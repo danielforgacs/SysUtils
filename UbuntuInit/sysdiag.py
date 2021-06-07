@@ -1,5 +1,7 @@
 import subprocess
 import wsgiref.simple_server as simpserv
+import types
+
 
 
 
@@ -33,6 +35,7 @@ def check_swappiness():
         msg = '[ERROR] swappiness is: '+str(swappinessnum)+'; expected: '+str(EXPECTEDSWAPPINESS)
 
     return msg
+
 
 
 
@@ -72,8 +75,16 @@ def serve_diag():
 
 
 def main():
-    check_swappiness()
-    check_boot_splash_screen()
+    is_func = lambda item: isinstance(item[1], types.FunctionType)
+    is_diag = lambda item: item[0].startswith('check')
+    diagfuncs = globals().items()
+    diagfuncs = filter(is_func, diagfuncs)
+    diagfuncs = filter(is_diag, diagfuncs)
+
+    for item in diagfuncs:
+        func = item[1]
+        func()
+
 
 
 
