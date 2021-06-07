@@ -49,6 +49,22 @@ SERVICES = [
 INSTALLED_PACKAGES = [
     'ghostscript*',
 ]
+MISSING_PACKAGES = [
+    'git',
+    'git-gui',
+    'gitk',
+    'ranger',
+    'doublecmd*',
+    'synaptic',
+    'dconf-editor',
+    'baobab',
+    'gthumb',
+    'gnome-tweaks',
+    'curl',
+    'vim',
+    'tree',
+    'docker-compose',
+]
 
 
 
@@ -237,6 +253,26 @@ def check_unnecessary_packages():
 
 
 
+@capture_stdout
+@print_func_result
+def check_missing_packages():
+    msg = ''
+
+    for package in MISSING_PACKAGES:
+        cmd = ['apt', 'list', '--installed', package]
+        response = subprocess.run(cmd, capture_output=True)
+        output = response.stdout.decode().strip()
+
+        if output == 'Listing...':
+            msg += '[ERROR] package is missing: '+package+'\n'
+
+    msg = msg.strip()
+
+    return msg
+
+
+
+
 
 def collect_diag_funcs(globalsdict):
     """
@@ -290,4 +326,4 @@ def serve_diagnostics():
 
 if __name__ == '__main__':
     main()
-    serve_diagnostics()
+    # serve_diagnostics()
