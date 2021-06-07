@@ -1,11 +1,19 @@
+"""
+Module to run system checks.
+"""
+
+import sys
+import io
 import subprocess
-import wsgiref.simple_server as simpserv
 import types
-
-
+import functools
+import wsgiref.simple_server as simpserv
 
 
 DO_PRINT = True
+DIAGNOSTIC_FUNC_PREFIX = 'check_'
+
+
 EXPECTEDSWAPPINESS = 30
 GRUBFILE = '/etc/default/grub'
 SPLASHSCREENMARKER = 'quiet splash'
@@ -13,7 +21,25 @@ SPLASHSCREENMARKER = 'quiet splash'
 
 
 
+class StdOutCapture:
+    def __enter__(self, *args):
+        self.stdout = io.StringIO()
+        sys.stdout = self.stdout
+        return self
+
+    def __exit__(self, *args):
+        sys.stdout = sys.__stdout__
+
+    @property
+    def data(self):
+        return self.stdout.getvalue()
+
+
+
+
+
 def print_func_result(func):
+    @functools.wraps(func)
     def wrapper():
         result = func()
         if DO_PRINT:
@@ -54,9 +80,40 @@ def check_boot_splash_screen():
 
 
 
-def make_html_report(environ, start_response):
+
+def collect_diag_funcs(globalsdict):
+    """
+    If this is not called late anough in the module
+    it won't collect all the funcs!
+    """
+    is_func = lambda item: isinstance(item[1], types.FunctionType)
+    is_diag = lambda item: item[0].startswith(DIAGNOSTIC_FUNC_PREFIX)
+    diagfuncs = globalsdict.items()
+    diagfuncs = filter(is_func, diagfuncs)
+    diagfuncs = filter(is_diag, diagfuncs)
+
+    for item in diagfuncs:
+        func = item[1]
+
+        yield func
+
+
+
+
+def main():
+    for func in collect_diag_funcs(globalsdict=globals()):
+        func()
+
+
+
+
+def responde_html_report(environ, start_response):
     html = ''
-    html += check_swappiness()
+    with StdOutCapture() as stdout:
+        main()
+        html = stdout.data
+
+    # html += check_swappiness()
     response = [html.encode()]
 
     start_response('200 OK', [('Content-type', 'text/plain; charset=utf-8')])
@@ -67,27 +124,11 @@ def make_html_report(environ, start_response):
 
 
 def serve_diag():
-    with simpserv.make_server(host='', port=8000, app=make_html_report) as httpd:
+    with simpserv.make_server(host='', port=8000, app=responde_html_report) as httpd:
         print('http://localhost:8000')
         httpd.serve_forever()
 
 
-
-
-def main():
-    is_func = lambda item: isinstance(item[1], types.FunctionType)
-    is_diag = lambda item: item[0].startswith('check')
-    diagfuncs = globals().items()
-    diagfuncs = filter(is_func, diagfuncs)
-    diagfuncs = filter(is_diag, diagfuncs)
-
-    for item in diagfuncs:
-        func = item[1]
-        func()
-
-
-
-
 if __name__ == '__main__':
-    main()
-    # serve_diag()
+    # main()
+    serve_diag()
