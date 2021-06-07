@@ -19,7 +19,7 @@ import wsgiref.simple_server as simpserv
 
 
 DO_PRINT = True
-DO_CAPTURE_STDOUT = True
+DO_CAPTURE_STDOUT = False
 DIAGNOSTIC_FUNC_PREFIX = 'check_'
 
 SWAPFILE = '/swapfile'
@@ -30,6 +30,9 @@ SPLASH_SCREEN_MARKER = 'quiet splash'
 PARTITIONS = [
     '/dev/sda2',
     '/dev/sda3',
+]
+REPOS = [
+    'git-core',
 ]
 SERVICES = [
     [' ', 'avahi-daemon.service'],
@@ -186,6 +189,27 @@ def check_drives_on_dock():
         msg = '[ERROR] Drives shown on dock.'
 
     return msg
+
+
+
+
+@capture_stdout
+@print_func_result
+def check_apt_repositories():
+    msg = ''
+    cmd = ['apt-add-repository', '--list']
+
+    for repo in REPOS:
+        response = subprocess.run(cmd, capture_output=True)
+        output = response.stdout.decode().strip()
+
+        if repo not in output:
+            msg += '[ERROR] Apt repo not added: ' + repo + '\n'
+
+    msg = msg.strip()
+
+    return msg
+
 
 
 
