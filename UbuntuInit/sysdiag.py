@@ -1,9 +1,9 @@
 import subprocess
-import io
-import sys
-
+import wsgiref.simple_server as simpserv
 
 EXPECTEDSWAPPINESS = 30
+
+
 
 
 def print_result(func):
@@ -12,6 +12,8 @@ def print_result(func):
         print(result)
         return result
     return wrapper
+
+
 
 
 @print_result
@@ -29,6 +31,34 @@ def check_swappiness():
 
 
 
+def make_html_report(environ, start_response):
+    print('alksdfhj')
+    html = ''
+    html += check_swappiness()
+
+    start_response('200 OK', [('Content-type', 'text/plain; charset=utf-8')])
+
+    response = [html.encode()]
+
+    return response
+
+
+
+
+def serve_diag():
+    with simpserv.make_server(host='', port=8000, app=make_html_report) as httpd:
+        print('http://localhost:8000')
+        httpd.serve_forever()
+
+
+
+
+def main():
+    check_swappiness()
+
+
+
+
 if __name__ == '__main__':
-    data = check_swappiness()
-    print(data)
+    main()
+    serve_diag()
