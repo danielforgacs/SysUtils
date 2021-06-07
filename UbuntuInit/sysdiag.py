@@ -3,20 +3,21 @@ import io
 import sys
 
 
-EXPECTEDSWAPPINESS = '30'
+EXPECTEDSWAPPINESS = 30
 
 
 class StdOutCapture:
     def __enter__(self, *args, **kwargs):
         self.stdout = io.StringIO()
         sys.stdout = self.stdout
+        return self
 
     def __exit__(self, *args, **kwargs):
-        sys.stdout == sys.__stdout__
+        sys.stdout = sys.__stdout__
 
     @property
     def data(self):
-        return self.stdout.getvalue()
+        return self.stdout.getvalue().strip()
 
 
 
@@ -29,14 +30,13 @@ def check_swappiness():
     if swappinessnum != EXPECTEDSWAPPINESS:
         # msg =
         # error('swappiness is: '+swappinessnum+'; expected: '+EXPECTEDSWAPPINESS)
-        print('swappiness is: '+swappinessnum+'; expected: '+EXPECTEDSWAPPINESS)
+        print('swappiness is: '+swappinessnum+'; expected: '+str(EXPECTEDSWAPPINESS))
 
 
 
 
 if __name__ == '__main__':
-    # sys.stdout = io.StringIO()
-    # mysdtout = sys.stdout
-    check_swappiness()
-    # sys.stdout = sys.__stdout__
-    # print(mysdtout.getvalue())
+    with StdOutCapture() as capt:
+        check_swappiness()
+        data = capt.data
+    print(data)
