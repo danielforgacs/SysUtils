@@ -108,13 +108,10 @@ def main():
 
 
 def responde_html_report(environ, start_response):
-    html = ''
     with StdOutCapture() as stdout:
         main()
-        html = stdout.data
 
-    # html += check_swappiness()
-    response = [html.encode()]
+    response = [stdout.data.encode()]
 
     start_response('200 OK', [('Content-type', 'text/plain; charset=utf-8')])
 
@@ -130,5 +127,5 @@ def serve_diag():
 
 
 if __name__ == '__main__':
-    # main()
+    main()
     serve_diag()
