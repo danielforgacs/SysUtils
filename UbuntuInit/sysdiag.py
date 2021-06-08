@@ -12,6 +12,7 @@ Module to run system diagnostics.
 import sys
 import os
 import io
+import re
 import subprocess
 import types
 import functools
@@ -97,7 +98,7 @@ def print_func_result(func):
     def wrapper():
         result = func()
         funcname = func.__name__[len(DIAGNOSTIC_FUNC_PREFIX):]
-        header = f'-- {funcname.upper()} '.ljust(79, '-')
+        header = f'--- {funcname.upper()} '.ljust(79, '-')
         result = f'\n{header}\n{result}'
         if DO_PRINT:
             is_error = '[ERROR]' in result
@@ -305,16 +306,26 @@ def main():
 
 
 
+def htmlify_report(report):
+    report = re.sub('\n', '<br/>\n', report)
+    report = re.sub('(\[ERROR\].*)\n', '<div style="background-color: lightcoral;">\g<1></div>\n', report)
+    report = re.sub('(\[INFO\].*)\n', '<div style="background-color: lightgreen;">\g<1></div>\n', report)
+
+    return report
+
+
+
+
 def responde_html_report(environ, start_response):
     messages = ''
 
     for func in collect_diag_funcs(globalsdict=globals()):
         messages += f'\n{func()}'
 
-    messages += '\n... REPORT DONE.'
-    response = [messages.encode()]
+    html = htmlify_report(report=messages)
+    response = [html.encode()]
 
-    start_response('200 OK', [('Content-type', 'text/plain; charset=utf-8')])
+    start_response('200 OK', [('Content-type', 'text/html; charset=utf-8')])
 
     return response
 
