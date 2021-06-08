@@ -13,6 +13,7 @@ import sys
 import os
 import io
 import re
+import datetime
 import subprocess
 import types
 import functools
@@ -318,11 +319,15 @@ def htmlify_report(report):
 
 def responde_html_report(environ, start_response):
     messages = ''
+    time0 = datetime.datetime.now()
 
     for func in collect_diag_funcs(globalsdict=globals()):
         messages += f'\n{func()}'
 
+    messages += '\n'
+    timedelta = datetime.datetime.now() - time0
     html = htmlify_report(report=messages)
+    html += '<p>elapsed time: '+str(timedelta)+'</p>'
     response = [html.encode()]
 
     start_response('200 OK', [('Content-type', 'text/html; charset=utf-8')])
