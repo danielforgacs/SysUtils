@@ -20,6 +20,7 @@ import wsgiref.simple_server as simpserv
 
 DO_PRINT = True
 DO_CAPTURE_STDOUT = False
+ERRORS_ONLY = False
 DIAGNOSTIC_FUNC_PREFIX = 'check_'
 
 SWAPFILE = '/swapfile'
@@ -95,11 +96,13 @@ def print_func_result(func):
     @functools.wraps(func)
     def wrapper():
         result = func()
+        funcname = func.__name__[len(DIAGNOSTIC_FUNC_PREFIX):]
+        header = f'-- {funcname.upper()} '.ljust(79, '-')
+        result = f'\n{header}\n{result}'
         if DO_PRINT:
-            funcname = func.__name__[len(DIAGNOSTIC_FUNC_PREFIX):]
-            header = f'-- {funcname.upper()} '.ljust(79, '-')
-            result = f'\n{header}\n{result}'
-            print(result)
+            is_error = '[ERROR]' in result
+            if not ERRORS_ONLY or is_error:
+                print(result)
         return result
     return wrapper
 
@@ -297,6 +300,8 @@ def main():
     for func in collect_diag_funcs(globalsdict=globals()):
         func()
 
+    print('\n... REPORT DONE.')
+
 
 
 
@@ -306,6 +311,7 @@ def responde_html_report(environ, start_response):
     for func in collect_diag_funcs(globalsdict=globals()):
         messages += f'\n{func()}'
 
+    messages += '\n... REPORT DONE.'
     response = [messages.encode()]
 
     start_response('200 OK', [('Content-type', 'text/plain; charset=utf-8')])
@@ -325,5 +331,8 @@ def serve_diagnostics():
 
 
 if __name__ == '__main__':
-    main()
-    # serve_diagnostics()
+    if len(sys.argv) == 1:
+        main()
+    elif len(sys.argv) == 2:
+        DO_CAPTURE_STDOUT = True
+        serve_diagnostics()
