@@ -67,6 +67,7 @@ MISSING_PACKAGES = [
     'vim',
     'tree',
     'docker-compose',
+    'xournal,
 ]
 
 
