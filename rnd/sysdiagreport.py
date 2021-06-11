@@ -1,5 +1,5 @@
-from wsgiref.validate import validator
-from wsgiref.simple_server import make_server
+import wsgiref.validate as validate
+import wsgiref.simple_server as simple_server
 
 HOST = 'http://localhost'
 PORT = 8000
@@ -15,9 +15,9 @@ def route_request_urls(environ, start_response):
 
 
 def main():
-    validator_app = validator(route_request_urls)
+    validator_app = validate.validator(route_request_urls)
 
-    with make_server('', PORT, validator_app) as httpd:
+    with simple_server.make_server('', PORT, validator_app) as httpd:
         print(f'{HOST}:{PORT}')
         httpd.serve_forever()
 
