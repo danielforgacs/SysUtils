@@ -1,8 +1,10 @@
 from wsgiref.validate import validator
 from wsgiref.simple_server import make_server
 
+HOST = 'http://localhost'
+PORT = 8000
 STATUS_OK = '200 OK'
-HEADERS = [('Content-type', 'text/plain')]
+HEADERS = [('Content-type', 'text/html')]
 
 
 def route_request_urls(environ, start_response):
@@ -12,9 +14,13 @@ def route_request_urls(environ, start_response):
     return response
 
 
-if __name__ == '__main__':
+def main():
     validator_app = validator(route_request_urls)
 
-    with make_server('', 8000, validator_app) as httpd:
-        print("http://localhost:8000")
+    with make_server('', PORT, validator_app) as httpd:
+        print(f'{HOST}:{PORT}')
         httpd.serve_forever()
+
+
+if __name__ == '__main__':
+    main()
