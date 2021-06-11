@@ -53,8 +53,7 @@ cp /etc/fstab \
 # Sys settings:
 sudo sed -i 's:Update-Package-Lists "1":Update-Package-Lists "0":g' /etc/apt/apt.conf.d/20auto-upgrades
 sudo sed -i 's:Unattended-Upgrade "1":Unattended-Upgrade "0":g' /etc/apt/apt.conf.d/20auto-upgrades
-sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && \
-	sudo update-grub
+sudo sed -i 's:GRUB_CMDLINE_LINUX_DEFAULT="quiet splash":GRUB_CMDLINE_LINUX_DEFAULT="":g' /etc/default/grub && sudo update-grub
 sudo sed -i 's:DIR_MODE=0755:DIR_MODE=700:g' /etc/adduser.conf
 sudo sed -i "s:ENABLED=1:# ENABLED=0:g" /etc/default/motd-news
 sudo sed -i "s:URLS=\"https:# URLS=\"https:g" /etc/default/motd-news
