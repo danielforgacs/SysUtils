@@ -10,24 +10,15 @@ HEADERS = [('Content-type', 'text/html')]
 ROOT_HMTL = """
 <script>
     setInterval(function() {
-      fetch('/')
+      fetch('/diag')
     }, 3000);
 </script>
 """
 
-# await new Promise(func => setTimeout(func, 2000));
-# var intervalId = setInterval(function() {
-#   alert("Interval reached every 5s")
-# }, 5000);
-# setInterval(function() {
-#   console.log('lkjhk')
-# }, 3000);
-
-
 
 def route_request_urls(environ, start_response):
     time = str(datetime.datetime.now())
-    print(time)
+    print(time, end=' ::')
     url = environ['PATH_INFO']
     print(url)
     html = time+ROOT_HMTL
