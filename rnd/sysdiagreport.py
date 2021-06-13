@@ -1,4 +1,5 @@
 import datetime
+import time
 import wsgiref.validate as validate
 import wsgiref.simple_server as simple_server
 
@@ -12,14 +13,20 @@ ROOT_HMTL = """
 <div id='root_diag_b'></div>
 <script>
     fetch('/diag_a')
+        .then(response => response.text())
+        .then(html => console.log(html))
     fetch('/diag_b')
+        .then(response => response.text())
+        .then(html => console.log(html))
 </script>
 """
 
 
 def diag_a():
+    time.sleep(5)
     return 'diag_a'
 def diag_b():
+    time.sleep(1)
     return 'diag_b'
 
 
