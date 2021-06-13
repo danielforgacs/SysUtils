@@ -9,8 +9,8 @@ STATUS_OK = '200 OK'
 HEADERS = [('Content-type', 'text/html')]
 
 ROOT_HMTL = """
-<div id='root_diag_a'>diag_a</div>
-<div id='root_diag_b'>diag_b</div>
+<div id='root_diag_a'>..</div>
+<div id='root_diag_b'>..</div>
 <script>
     for (diag of ['diag_a', 'diag_b']) {
         let url = '/'+diag
@@ -20,6 +20,8 @@ ROOT_HMTL = """
             .then(response => response.text())
             .then(function func (html) {
                 console.log('finished - url, rootname, html:', url, rootname, html)
+                let rootdiv = document.getElementById(rootname)
+                rootdiv.innerHTML = 'ajfhalkdhjf'
             } )
         }
 </script>
