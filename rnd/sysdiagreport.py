@@ -12,8 +12,10 @@ ROOT_HMTL = """
 <div id='root_diag_a'>diag_a</div>
 <div id='root_diag_b'>diag_b</div>
 <script>
-    for (diag in ['diag_a', 'diag_b']) {
-        fetch('/diag_a')
+    for (diag of ['diag_a', 'diag_b']) {
+        url = '/'+diag
+        console.log(url)
+        fetch(url)
             .then(response => response.text())
             .then(html => console.log(html))
     }
