@@ -11,9 +11,8 @@ ROOT_HMTL = """
 <div id='root_diag_a'></div>
 <div id='root_diag_b'></div>
 <script>
-    // setInterval(function() {
-    //   fetch('/diag')
-    // }, 3000);
+    fetch('/diag_a')
+    fetch('/diag_b')
 </script>
 """
 
@@ -35,7 +34,9 @@ def route_request_urls(environ, start_response):
         html = time+ROOT_HMTL
         response = [html.encode()]
     else:
-        html = time+ROOT_HMTL
+        # func = globals()[url[1:]]
+        func = globals().get(url[1:], lambda: '-')
+        html = func()
         response = [html.encode()]
 
     start_response(STATUS_OK, HEADERS)
