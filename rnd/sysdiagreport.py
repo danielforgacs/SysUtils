@@ -9,15 +9,14 @@ STATUS_OK = '200 OK'
 HEADERS = [('Content-type', 'text/html')]
 
 ROOT_HMTL = """
-<div id='root_diag_a'></div>
-<div id='root_diag_b'></div>
+<div id='root_diag_a'>diag_a</div>
+<div id='root_diag_b'>diag_b</div>
 <script>
-    fetch('/diag_a')
-        .then(response => response.text())
-        .then(html => console.log(html))
-    fetch('/diag_b')
-        .then(response => response.text())
-        .then(html => console.log(html))
+    for (diag in ['diag_a', 'diag_b']) {
+        fetch('/diag_a')
+            .then(response => response.text())
+            .then(html => console.log(html))
+    }
 </script>
 """
 
@@ -41,8 +40,7 @@ def route_request_urls(environ, start_response):
         html = time+ROOT_HMTL
         response = [html.encode()]
     else:
-        # func = globals()[url[1:]]
-        func = globals().get(url[1:], lambda: '-')
+        func = globals().get(url[1:], lambda: '--')
         html = func()
         response = [html.encode()]
 
