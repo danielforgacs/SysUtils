@@ -8,21 +8,36 @@ STATUS_OK = '200 OK'
 HEADERS = [('Content-type', 'text/html')]
 
 ROOT_HMTL = """
+<div id='root_diag_a'></div>
+<div id='root_diag_b'></div>
 <script>
-    setInterval(function() {
-      fetch('/diag')
-    }, 3000);
+    // setInterval(function() {
+    //   fetch('/diag')
+    // }, 3000);
 </script>
 """
 
 
+def diag_a():
+    return 'diag_a'
+def diag_b():
+    return 'diag_b'
+
+
+
+
 def route_request_urls(environ, start_response):
     time = str(datetime.datetime.now())
-    print(time, end=' ::')
     url = environ['PATH_INFO']
-    print(url)
-    html = time+ROOT_HMTL
-    response = [html.encode()]
+    print(time, url)
+
+    if url == '/':
+        html = time+ROOT_HMTL
+        response = [html.encode()]
+    else:
+        html = time+ROOT_HMTL
+        response = [html.encode()]
+
     start_response(STATUS_OK, HEADERS)
 
     return response
