@@ -12,18 +12,21 @@ ROOT_HMTL = """
 <div id='root_diag_a'>..</div>
 <div id='root_diag_b'>..</div>
 <script>
-    for (diag of ['diag_a', 'diag_b']) {
-        let url = '/'+diag
-        let rootname = 'root_'+diag
-        console.log('url, rootname:', url, rootname)
-        fetch(url)
-            .then(response => response.text())
-            .then(function func (html) {
-                console.log('finished - url, rootname, html:', url, rootname, html)
-                let rootdiv = document.getElementById(rootname)
-                rootdiv.innerHTML = html
-            } )
-        }
+    function fetch_diags () {
+        for (diag of ['diag_a', 'diag_b']) {
+            let url = '/'+diag
+            let rootname = 'root_'+diag
+            console.log('url, rootname:', url, rootname)
+            fetch(url)
+                .then(response => response.text())
+                .then(function func (html) {
+                    console.log('finished - url, rootname, html:', url, rootname, html)
+                    let rootdiv = document.getElementById(rootname)
+                    rootdiv.innerHTML = html
+                } )
+            }
+    }
+    fetch_diags()
 </script>
 """
 
