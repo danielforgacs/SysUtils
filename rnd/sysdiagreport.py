@@ -21,7 +21,7 @@ ROOT_HMTL = """
             .then(function func (html) {
                 console.log('finished - url, rootname, html:', url, rootname, html)
                 let rootdiv = document.getElementById(rootname)
-                rootdiv.innerHTML = 'ajfhalkdhjf'
+                rootdiv.innerHTML = html
             } )
         }
 </script>
