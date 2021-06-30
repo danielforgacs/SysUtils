@@ -124,10 +124,6 @@ def capture_stdout(func):
     return wrapper
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_swappiness():
     cmd = ['cat', '/proc/sys/vm/swappiness']
     swappinesscheck = subprocess.run(cmd, capture_output=True)
@@ -141,10 +137,6 @@ async def check_swappiness():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_boot_splash_screen():
     with open(GRUBFILE, 'r') as filestream:
         grubconfig = filestream.read()
@@ -158,10 +150,6 @@ async def check_boot_splash_screen():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_services():
     msg = ''
 
@@ -178,10 +166,6 @@ async def check_services():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_free_space():
     cmd = ['df', '-h', *PARTITIONS]
     response = subprocess.run(cmd, capture_output=True)
@@ -192,10 +176,6 @@ async def check_free_space():
     return result
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_swapfile_size():
     msg = '[INFO] Swapfile size OK.'
 
@@ -206,10 +186,6 @@ async def check_swapfile_size():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_drives_on_dock():
     cmd = ['gsettings', 'get', 'org.gnome.shell.extensions.dash-to-dock', 'show-mounts']
     response = subprocess.run(cmd, capture_output=True)
@@ -223,10 +199,6 @@ async def check_drives_on_dock():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_apt_repositories():
     msg = ''
     cmd = ['apt-add-repository', '--list']
@@ -244,10 +216,6 @@ async def check_apt_repositories():
     return msg
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_unnecessary_packages():
     msg = ''
 
@@ -266,10 +234,6 @@ async def check_unnecessary_packages():
 
 
 
-
-
-# @capture_stdout
-# @print_func_result
 async def check_missing_packages():
     msg = ''
 
@@ -312,55 +276,18 @@ def collect_diag_funcs(globalsdict):
 async def main():
     tasks = []
 
-    for func in list(collect_diag_funcs(globalsdict=globals())):
+    for func in collect_diag_funcs(globalsdict=globals()):
         tasks += [asyncio.create_task(func())]
 
-    for task in tasks:
-        await task
+    # for task in tasks:
+    #     await task
 
     print('\n... REPORT DONE.')
 
 
 
 
-def htmlify_report(report):
-    report = re.sub('\n', '<br/>\n', report)
-    report = re.sub('(\[ERROR\].*)\n', '<div style="background-color: lightcoral;">\g<1></div>\n', report)
-    report = re.sub('(\[INFO\].*)\n', '<div style="background-color: lightgreen;">\g<1></div>\n', report)
-
-    return report
-
-
-
-
-def responde_html_report(environ, start_response):
-    messages = ''
-    time0 = datetime.datetime.now()
-
-    for func in collect_diag_funcs(globalsdict=globals()):
-        messages += f'\n{func()}'
-
-    messages += '\n'
-    timedelta = datetime.datetime.now() - time0
-    html = htmlify_report(report=messages)
-    html += '<p>elapsed time: '+str(timedelta)+'</p>'
-    response = [html.encode()]
-
-    start_response('200 OK', [('Content-type', 'text/html; charset=utf-8')])
-
-    return response
-
-
-
-
-def serve_diagnostics():
-    print('-'*79)
-    with simpserv.make_server(host='', port=8000, app=responde_html_report) as httpd:
-        print('http://localhost:8000')
-        httpd.serve_forever()
-
-
-
-
 if __name__ == '__main__':
+    time0 = datetime.datetime.now()
     asyncio.run(main())
+    print(':: Elapsed time:', str(datetime.datetime.now()-time0))
