@@ -18,6 +18,7 @@ import subprocess
 import types
 import functools
 import wsgiref.simple_server as simpserv
+import asyncio
 
 
 DO_PRINT = True
@@ -125,9 +126,9 @@ def capture_stdout(func):
 
 
 
-@capture_stdout
-@print_func_result
-def check_swappiness():
+# @capture_stdout
+# @print_func_result
+async def check_swappiness():
     cmd = ['cat', '/proc/sys/vm/swappiness']
     swappinesscheck = subprocess.run(cmd, capture_output=True)
     swappinessnum = int(swappinesscheck.stdout.decode().strip())
@@ -136,14 +137,15 @@ def check_swappiness():
     if swappinessnum != EXPECTED_SWAPPINESS:
         msg = '[ERROR] swappiness is: '+str(swappinessnum)+'; expected: '+str(EXPECTED_SWAPPINESS)
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_boot_splash_screen():
+# @capture_stdout
+# @print_func_result
+async def check_boot_splash_screen():
     with open(GRUBFILE, 'r') as filestream:
         grubconfig = filestream.read()
 
@@ -152,14 +154,15 @@ def check_boot_splash_screen():
     if SPLASH_SCREEN_MARKER in grubconfig:
         msg = '[ERROR] boot splash screen is turned ON in grub config'
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_services():
+# @capture_stdout
+# @print_func_result
+async def check_services():
     msg = ''
 
     for service in SERVICES:
@@ -171,40 +174,43 @@ def check_services():
 
     msg = msg.strip()
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_free_space():
+# @capture_stdout
+# @print_func_result
+async def check_free_space():
     cmd = ['df', '-h', *PARTITIONS]
     response = subprocess.run(cmd, capture_output=True)
     result = response.stdout.decode()
     result = result.strip()
 
+    print(result)
     return result
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_swapfile_size():
+# @capture_stdout
+# @print_func_result
+async def check_swapfile_size():
     msg = '[INFO] Swapfile size OK.'
 
     if os.stat(SWAPFILE).st_size < EXPECTED_SWAP_SIZE:
         msg ='[ERROR] swapfile is smaller than: '+str(EXPECTED_SWAP_SIZE)
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_drives_on_dock():
+# @capture_stdout
+# @print_func_result
+async def check_drives_on_dock():
     cmd = ['gsettings', 'get', 'org.gnome.shell.extensions.dash-to-dock', 'show-mounts']
     response = subprocess.run(cmd, capture_output=True)
     output = response.stdout.decode().strip()
@@ -213,14 +219,15 @@ def check_drives_on_dock():
     if output != 'false':
         msg = '[ERROR] Drives shown on dock.'
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_apt_repositories():
+# @capture_stdout
+# @print_func_result
+async def check_apt_repositories():
     msg = ''
     cmd = ['apt-add-repository', '--list']
 
@@ -233,14 +240,15 @@ def check_apt_repositories():
 
     msg = msg.strip()
 
+    print(msg)
     return msg
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_unnecessary_packages():
+# @capture_stdout
+# @print_func_result
+async def check_unnecessary_packages():
     msg = ''
 
     for package in INSTALLED_PACKAGES:
@@ -253,15 +261,16 @@ def check_unnecessary_packages():
 
     msg = msg.strip()
 
+    print(msg)
     return msg
 
 
 
 
 
-@capture_stdout
-@print_func_result
-def check_missing_packages():
+# @capture_stdout
+# @print_func_result
+async def check_missing_packages():
     msg = ''
 
     for package in MISSING_PACKAGES:
@@ -274,6 +283,7 @@ def check_missing_packages():
 
     msg = msg.strip()
 
+    print(msg)
     return msg
 
 
@@ -299,9 +309,14 @@ def collect_diag_funcs(globalsdict):
 
 
 
-def main():
-    for func in collect_diag_funcs(globalsdict=globals()):
-        func()
+async def main():
+    tasks = []
+
+    for func in list(collect_diag_funcs(globalsdict=globals())):
+        tasks += [asyncio.create_task(func())]
+
+    for task in tasks:
+        await task
 
     print('\n... REPORT DONE.')
 
@@ -348,8 +363,4 @@ def serve_diagnostics():
 
 
 if __name__ == '__main__':
-    if len(sys.argv) == 1:
-        main()
-    elif len(sys.argv) == 2:
-        DO_CAPTURE_STDOUT = True
-        serve_diagnostics()
+    asyncio.run(main())
