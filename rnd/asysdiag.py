@@ -277,6 +277,7 @@ async def main():
     tasks = []
 
     for func in collect_diag_funcs(globalsdict=globals()):
+        print('create_task:', func)
         tasks += [asyncio.create_task(func())]
 
     # for task in tasks:
